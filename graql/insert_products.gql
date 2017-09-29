@@ -1,0 +1,26 @@
+match
+	for(<entries>)
+		for(cs in <categories>) do {
+			for(c in <cs>) do {
+				$category-<c> has name <c>;
+			}
+		}
+	}
+
+#insert the products
+insert 
+	$x isa product 
+		has productId @string(<asin>)
+		has name @string(<title>)
+		has price @double(<price>)
+		has imUrl @string(<imUrl>)
+		has brand @string(<brand>);
+
+	($x, $category-<c>) isa categorisedAs;
+		
+
+
+
+
+#insert the related relations
+

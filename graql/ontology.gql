@@ -1,0 +1,91 @@
+insert 
+
+name sub resource datatype string; #product name too
+
+#person
+reviewerID sub resource datatype string;
+
+#product
+productId sub resource datatype string;
+price sub resource datatype double;
+imUrl sub resource datatype string;
+salesRank sub resource datatype long;
+brand sub resource datatype string;
+
+#review 
+thumbsUp sub resource datatype long; #thumbs up
+thumbsDown sub resource datatype long; #thumbs down
+reviewText sub resource datatype string;
+rating sub resource datatype long; #1 - 5
+summary sub resource datatype string;
+unixReviewTime sub resource datatype long;
+reviewDate sub resource datatype date;
+
+reviewer sub role;
+reviewable sub role;
+
+reviews sub relation
+	has thumbsUp
+	has thumbsDown
+	has reviewText
+	has rating
+	has summary
+	has unixReviewTime
+	has reviewDate
+	relates reviewer
+	relates reviewable;
+
+#related products!
+relatable sub role;
+relatedStart sub relatable;
+relatedEnd sub relatable;
+
+
+relatedTo sub relation
+	relates relatable
+	is-abstract;
+
+also_bought sub relatedTo
+	relates relatedStart
+	relates relatedEnd;
+
+also_viewed sub relatedTo
+	relates relatedStart
+	relates relatedEnd;
+
+bought_together sub relatedTo
+	relates relatedStart
+	relates relatedEnd;
+
+categorisable sub role;
+tag sub role;
+
+categorisedAs sub relation
+	relates categorisable
+	relates tag;
+
+person sub entity
+	has reviewerID
+	has name
+	plays reviewer;
+
+product sub entity
+	has productId
+	has name
+	has price
+	has imUrl
+	has salesRank
+	has brand
+	plays reviewable
+	plays categorisable
+	plays relatable;
+
+category sub entity
+	has name
+	plays tag;
+
+
+
+	
+
+

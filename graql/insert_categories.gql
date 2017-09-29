@@ -1,0 +1,2 @@
+insert $x isa category
+	has name @string(<categories>);

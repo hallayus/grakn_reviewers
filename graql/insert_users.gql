@@ -1,0 +1,5 @@
+insert 
+	$x isa person 
+		if(@string(<reviewerName>) != "unknown") do { has name @string(<reviewerName>) }
+		has reviewerID @string(<reviewerId>);
+		
